@@ -1,35 +1,48 @@
-import random
+import time
+from calendar import isleap
 
-def get_user_choice():
-    choice = input("Enter your choice (rock, paper, scissors): ").lower()
-    while choice not in ['rock', 'paper', 'scissors']:
-        choice = input("Invalid choice ").lower()
-    return choice
-
-def get_csomputer_choice():
-    return random.choice(['rock', 'paper', 'scissors'])
-
-def determine_winner(user_choice, computer_choice):
-    if user_choice == computer_choice:
-        return "It's a tie!"
-    elif (user_choice == 'rock' and computer_choice == 'scissors') or \
-         (user_choice == 'paper' and computer_choice == 'rock') or \
-         (user_choice == 'scissors' and computer_choice == 'paper'):
-        return "You win!"
+# judge the leap year
+def judge_leap_year(year):
+    if isleap(year):
+        return True
     else:
-        return "Computer wins!"
+        return False
 
-def play_game():
-    print("Welcome to Rock, Paper, Scissors!")
-    while True:
-        user_choice = get_user_choice()
-        computer_choice = get_csomputer_choice()
-        print("You chose:", user_choice)
-        print("Computer chose:", computer_choice)
-        print(determine_winner(user_choice, computer_choice))
-        play_again = input(" want to play again? (yes or no): ").lower()
-        if play_again != 'yes':
-            print("Thanks for playing!")
-            break
 
-play_game()
+# returns the number of days in each month
+def month_days(month, leap_year):
+    if month in [1, 3, 5, 7, 8, 10, 12]:
+        return 31
+    elif month in [4, 6, 9, 11]:
+        return 30
+    elif month == 2 and leap_year:
+        return 29
+    elif month == 2 and (not leap_year):
+        return 28
+
+
+name = input("input your name: ")
+age = input("input your age: ")
+localtime = time.localtime(time.time())
+
+year = int(age)
+month = year * 12 + localtime.tm_mon
+day = 0
+
+begin_year = int(localtime.tm_year) - year
+end_year = begin_year + year
+
+# calculate the days
+for y in range(begin_year, end_year):
+    if (judge_leap_year(y)):
+        day = day + 366
+    else:
+        day = day + 365
+
+leap_year = judge_leap_year(localtime.tm_year)
+for m in range(1, localtime.tm_mon):
+    day = day + month_days(m, leap_year)
+
+day = day + localtime.tm_mday
+print("%s's age is %d years or " % (name, year), end="")
+print("%d months or %d days" % (month, day))
