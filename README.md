@@ -1,8 +1,3 @@
----
-
-### 📄 `README.md`
-
-```markdown
 # 🧮 Age Calculator – Manual Date Logic in Python
 
 This is a beginner-friendly Python project that calculates a person's age in **years**, **months**, and **exact number of days**, based on their full date of birth. Unlike typical implementations, this project **manually computes** leap years, days in each month, and date differences **without using `datetime`** — making it ideal for learning date logic and condition handling in Python.
