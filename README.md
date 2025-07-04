@@ -1,5 +1,3 @@
-Sure, Pavan! Here's a **pixel-perfect `README.md` file** for your **Age Calculator Project**, crafted in a clean and professional format — perfect for your **GitHub portfolio or resume** ✨
-
 ---
 
 ### 📄 `README.md`
